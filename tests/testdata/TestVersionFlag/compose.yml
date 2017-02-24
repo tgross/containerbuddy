@@ -1,0 +1,11 @@
+version: "2.1"
+
+services:
+  shell:
+    extends:
+      file: ../build.yml
+      service: shell
+    mem_limit: 128m
+    volumes:
+      - '${CONTAINERPILOT_BIN}:/bin/containerpilot:ro'
+    command: /bin/containerpilot -version

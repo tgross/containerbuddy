@@ -1,0 +1,15 @@
+version: "2.1"
+
+services:
+
+  app:
+    build: ./app
+
+  consul:
+    build: ./consul
+
+  nginx:
+    build: ./nginx
+
+  shell:
+    build: ./shell

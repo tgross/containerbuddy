@@ -1,0 +1,24 @@
+version: "2.1"
+
+services:
+
+  consul:
+    extends:
+      file: ../build.yml
+      service: consul
+    mem_limit: 128m
+    hostname: consul
+
+  app:
+    extends:
+      file: ../build.yml
+      service: app
+    mem_limit: 128m
+    links:
+      - consul:consul
+    environment:
+      - CONTAINERPILOT=file:///etc/containerpilot.json
+    volumes:
+      - '${CONTAINERPILOT_BIN}:/bin/containerpilot:ro'
+      - './containerpilot.json:/etc/containerpilot.json'
+      - './coprocess.sh:/bin/coprocess.sh'
